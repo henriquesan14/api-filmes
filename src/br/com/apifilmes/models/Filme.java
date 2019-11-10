@@ -1,11 +1,14 @@
 package br.com.apifilmes.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Filme implements Serializable {
@@ -19,13 +22,16 @@ public class Filme implements Serializable {
 	
 	private String sinopse;
 	
-	private int nota;
+	private double nota;
+	
+	@OneToMany(mappedBy = "filme")
+	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 	public Filme() {
 		super();
 	}
 
-	public Filme(Long id, String titulo, String sinopse, int nota) {
+	public Filme(Long id, String titulo, String sinopse, double nota) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -58,11 +64,11 @@ public class Filme implements Serializable {
 	}
 	
 
-	public int getNota() {
+	public double getNota() {
 		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(double nota) {
 		this.nota = nota;
 	}
 
@@ -95,7 +101,14 @@ public class Filme implements Serializable {
 	public String toString() {
 		return "Filme [id=" + id + ", titulo=" + titulo + ", sinopse=" + sinopse + ", nota=" + nota + "]";
 	}
+	
+	public void calculaMediaNota() {
+		int soma = 0;
+		for (Comentario comentario : this.comentarios) {
+			soma += comentario.getNota();
+		}
+		double media = soma / this.comentarios.size();
+		this.nota = media;
+	}
 
-	
-	
 }
