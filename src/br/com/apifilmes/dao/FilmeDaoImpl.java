@@ -15,7 +15,7 @@ public class FilmeDaoImpl implements FilmeDao {
 	}
 	
 	
-	public void save(Filme filme) {
+	public Filme save(Filme filme) {
 		EntityManager em  = JPAUtils.createEntityManager();
 		em.getTransaction().begin();
 		if(filme.getId() == null) {
@@ -25,6 +25,7 @@ public class FilmeDaoImpl implements FilmeDao {
 		}
 		em.getTransaction().commit();
 		em.close();
+		return filme;
 	}
 	
 	public void remove(Long id) {
@@ -34,6 +35,12 @@ public class FilmeDaoImpl implements FilmeDao {
 		em.remove(filme);
 		em.getTransaction().commit();
 		em.close();
+	}
+	
+	public Filme getById(Long id) {
+		EntityManager em  = JPAUtils.createEntityManager();
+		Filme filme = em.find(Filme.class, id);
+		return filme;
 	}
 
 }

@@ -5,7 +5,7 @@ import br.com.apifilmes.models.Filme;
 
 public interface FilmeDao {
 	List<Filme> getAll();
-	void save(Filme filme);
+	Filme save(Filme filme);
 	void remove(Long id);
-
+	Filme getById(Long id);
 }
