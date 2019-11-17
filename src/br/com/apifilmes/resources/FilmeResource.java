@@ -75,7 +75,7 @@ public class FilmeResource {
 		}
 		filme.setId(id);
 		filmeDao.save(filme);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 	
 	@DELETE
@@ -84,7 +84,7 @@ public class FilmeResource {
 		if(filmeDao.getById(id) == null) {
 			return Response.status(404).entity(new ErrorMessage("Não foi encontrado filme com id: " + id)).build();
 		}
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 
 }

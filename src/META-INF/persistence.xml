@@ -11,6 +11,7 @@
  
     <!-- entidade mapeada -->
     <class>br.com.apifilmes.models.Filme</class>
+    <class>br.com.apifilmes.models.Comentario</class>
  
     <properties>
      

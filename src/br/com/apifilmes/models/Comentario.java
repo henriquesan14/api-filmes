@@ -19,6 +19,7 @@ public class Comentario implements Serializable {
 	private int nota;
 	
 	@ManyToOne()
+	@JoinColumn(name="filme_id")
 	private Filme filme;
 	
 	public Comentario(Long id, String mensagem, int nota, Filme filme) {

@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class Filme implements Serializable {
@@ -24,53 +27,99 @@ public class Filme implements Serializable {
 	
 	private double nota;
 	
+	private String urlImagem;
+	
 	@OneToMany(mappedBy = "filme")
+	@JsonbTransient
 	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 	public Filme() {
 		super();
 	}
 
-	public Filme(Long id, String titulo, String sinopse, double nota) {
+
+	public Filme(Long id, String titulo, String sinopse, double nota, String urlImagem) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.sinopse = sinopse;
 		this.nota = nota;
+		this.urlImagem = urlImagem;
 	}
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 	public String getTitulo() {
 		return titulo;
 	}
 
+
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
+
 
 	public String getSinopse() {
 		return sinopse;
 	}
 
+
+
 	public void setSinopse(String sinopse) {
 		this.sinopse = sinopse;
 	}
-	
+
+
 
 	public double getNota() {
 		return nota;
 	}
 
+
+
 	public void setNota(double nota) {
 		this.nota = nota;
 	}
+
+
+
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+
+
+
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
+
+
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+
 
 	@Override
 	public int hashCode() {
