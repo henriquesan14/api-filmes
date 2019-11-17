@@ -1,6 +1,8 @@
 package br.com.apifilmes.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class Filme implements Serializable {
 	
 	private String sinopse;
 	
-	private double nota;
+	private BigDecimal nota;
 	
 	private String urlImagem;
 	
@@ -38,7 +40,7 @@ public class Filme implements Serializable {
 	}
 
 
-	public Filme(Long id, String titulo, String sinopse, double nota, String urlImagem) {
+	public Filme(Long id, String titulo, String sinopse, BigDecimal nota, String urlImagem) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -85,13 +87,13 @@ public class Filme implements Serializable {
 
 
 
-	public double getNota() {
+	public BigDecimal getNota() {
 		return nota;
 	}
 
 
 
-	public void setNota(double nota) {
+	public void setNota(BigDecimal nota) {
 		this.nota = nota;
 	}
 
@@ -152,11 +154,17 @@ public class Filme implements Serializable {
 	}
 	
 	public void calculaMediaNota() {
-		int soma = 0;
+		BigDecimal soma = BigDecimal.ZERO;
 		for (Comentario comentario : this.comentarios) {
-			soma += comentario.getNota();
+			BigDecimal nota = BigDecimal.valueOf(comentario.getNota());
+			soma = soma.add(nota);
 		}
-		double media = soma / this.comentarios.size();
+		double size = this.comentarios.size();
+		BigDecimal tamanhoArray = BigDecimal.valueOf(size);
+		BigDecimal media = soma.divide(tamanhoArray,2, RoundingMode.HALF_UP );
+		System.out.println(soma);
+		System.out.println(tamanhoArray);
+		System.out.println(media);
 		this.nota = media;
 	}
 

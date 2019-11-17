@@ -54,6 +54,8 @@ public class ComentarioResource {
 		Filme filme = filmeDao.getById(idFilme);
 		comentario.setFilme(filme);
 		Comentario comentarioCadastrado = comentarioDao.save(comentario);
+		filme.calculaMediaNota();
+		this.filmeDao.save(filme);
 		URI uri = uriInfo.getAbsolutePathBuilder().path(comentarioCadastrado.getId().toString()).build();
 		return Response.created(uri).build();
 	}
@@ -91,6 +93,8 @@ public class ComentarioResource {
 			return Response.status(400).entity(new ErrorMessage("Requisição inválida, id's não conferem")).build();
 		}
 		comentarioDao.save(comentario);
+		filme.calculaMediaNota();
+		this.filmeDao.save(filme);
 		return Response.noContent().build();
 	}
 	
