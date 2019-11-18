@@ -19,11 +19,11 @@
       <property name="javax.persistence.jdbc.driver"
       value="com.mysql.jdbc.Driver" />
       <property name="javax.persistence.jdbc.url"
-      value="jdbc:mysql://localhost:3306/apifilmesdb" />
+      value="jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_fd4be873c0dc504" />
       <property name="javax.persistence.jdbc.user"
-      value="root" />
+      value="ba1c355f253a7e" />
       <property name="javax.persistence.jdbc.password"
-      value="" />
+      value="51fbc965" />
  
       <!-- propriedades do hibernate -->
       <property name="hibernate.dialect"
