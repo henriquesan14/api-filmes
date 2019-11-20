@@ -2,6 +2,7 @@ package br.com.apifilmes.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -9,6 +10,8 @@ import br.com.apifilmes.models.Comentario;
 import br.com.apifilmes.utils.JPAUtils;
 
 public class ComentarioDaoImpl implements ComentarioDao{
+	
+	
 
 	@Override
 	public List<Comentario> getAllByFilme(Long idFilme) {

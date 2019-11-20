@@ -5,21 +5,4 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
-  <servlet>
-  	<servlet-name>API-Filmes</servlet-name>
-  	<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-  	<init-param>
-        <param-name>jersey.config.server.provider.packages</param-name>
-        <param-value>br.com.apifilmes.resources</param-value>
-    </init-param>
-    <init-param>
-        <param-name>com.sum.jersey.api.json.POJOMappingFeature</param-name>
-        <param-value>true</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>API-Filmes</servlet-name>
-    <url-pattern>/v1/*</url-pattern>
-  </servlet-mapping>
 </web-app>

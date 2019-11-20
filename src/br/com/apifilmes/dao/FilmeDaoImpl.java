@@ -1,6 +1,8 @@
 package br.com.apifilmes.dao;
 
 import java.util.List;
+
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.apifilmes.models.Filme;
@@ -8,8 +10,10 @@ import br.com.apifilmes.utils.JPAUtils;
 
 public class FilmeDaoImpl implements FilmeDao {
 	
+	@Inject
+	private EntityManager em;
+	
 	public List<Filme> getAll(){
-		EntityManager em  = JPAUtils.createEntityManager();
 		List<Filme> result = em.createQuery("SELECT f FROM Filme f", Filme.class).getResultList();
 		return result;
 	}
