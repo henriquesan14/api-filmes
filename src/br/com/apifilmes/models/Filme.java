@@ -32,7 +32,7 @@ public class Filme implements Serializable {
 	private String urlImagem;
 	
 	@OneToMany(mappedBy = "filme")
-	@JsonbTransient
+	
 	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 	public Filme() {
@@ -154,12 +154,14 @@ public class Filme implements Serializable {
 	}
 	
 	public void calculaMediaNota() {
+		
 		BigDecimal soma = BigDecimal.ZERO;
 		for (Comentario comentario : this.comentarios) {
 			BigDecimal nota = BigDecimal.valueOf(comentario.getNota());
 			soma = soma.add(nota);
 		}
 		double size = this.comentarios.size();
+		System.out.println(size);
 		BigDecimal tamanhoArray = BigDecimal.valueOf(size);
 		BigDecimal media = soma.divide(tamanhoArray,2, RoundingMode.HALF_UP );
 		System.out.println(soma);

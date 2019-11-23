@@ -19,6 +19,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.glassfish.jersey.process.internal.RequestScoped;
+
 import br.com.apifilmes.dao.FilmeDao;
 import br.com.apifilmes.dao.FilmeDaoImpl;
 import br.com.apifilmes.models.ErrorMessage;

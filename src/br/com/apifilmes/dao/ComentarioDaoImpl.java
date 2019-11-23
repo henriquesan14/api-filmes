@@ -1,5 +1,6 @@
 package br.com.apifilmes.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,13 +10,16 @@ import javax.persistence.TypedQuery;
 import br.com.apifilmes.models.Comentario;
 import br.com.apifilmes.utils.JPAUtils;
 
-public class ComentarioDaoImpl implements ComentarioDao{
+public class ComentarioDaoImpl implements ComentarioDao, Serializable{
 	
-	
+	@Inject
+	private EntityManager em;
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public List<Comentario> getAllByFilme(Long idFilme) {
-		EntityManager em  = JPAUtils.createEntityManager();
+		em  = JPAUtils.createEntityManager();
 		TypedQuery<Comentario> query = em.createQuery("SELECT c FROM Comentario c WHERE c.filme.id = ?1", Comentario.class);
 		query.setParameter(1, idFilme);
 		List<Comentario> list = query.getResultList();
@@ -24,7 +28,7 @@ public class ComentarioDaoImpl implements ComentarioDao{
 
 	@Override
 	public Comentario save(Comentario comentario) {
-		EntityManager em  = JPAUtils.createEntityManager();
+		em  = JPAUtils.createEntityManager();
 		em.getTransaction().begin();
 		if(comentario.getId() == null) {
 			em.persist(comentario);
@@ -38,7 +42,7 @@ public class ComentarioDaoImpl implements ComentarioDao{
 
 	@Override
 	public void remove(Long id) {
-		EntityManager em = JPAUtils.createEntityManager();
+		em = JPAUtils.createEntityManager();
 		em.getTransaction().begin();
 		Comentario comentario = em.find(Comentario.class, id);
 		em.remove(comentario);
@@ -48,7 +52,7 @@ public class ComentarioDaoImpl implements ComentarioDao{
 
 	@Override
 	public Comentario getById(Long idFilme, Long idComentario) {
-		EntityManager em  = JPAUtils.createEntityManager();
+		em  = JPAUtils.createEntityManager();
 		TypedQuery<Comentario> query = em.createQuery("SELECT c FROM Comentario c WHERE c.filme.id = ?1 AND c.id = ?2", Comentario.class);
 		query.setParameter(1, idFilme);
 		query.setParameter(2, idComentario);

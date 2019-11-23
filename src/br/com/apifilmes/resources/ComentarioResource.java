@@ -54,6 +54,7 @@ public class ComentarioResource {
 		Filme filme = filmeDao.getById(idFilme);
 		comentario.setFilme(filme);
 		Comentario comentarioCadastrado = comentarioDao.save(comentario);
+		filme.getComentarios().add(comentario);
 		filme.calculaMediaNota();
 		this.filmeDao.save(filme);
 		URI uri = uriInfo.getAbsolutePathBuilder().path(comentarioCadastrado.getId().toString()).build();

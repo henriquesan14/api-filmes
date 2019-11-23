@@ -1,6 +1,8 @@
 package br.com.apifilmes.models;
 
 import java.io.Serializable;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Comentario implements Serializable {
 	
 	@ManyToOne()
 	@JoinColumn(name="filme_id")
+	@JsonbTransient
 	private Filme filme;
 	
 	public Comentario(Long id, String mensagem, int nota, Filme filme) {
