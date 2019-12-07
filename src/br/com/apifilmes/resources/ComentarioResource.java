@@ -71,7 +71,6 @@ public class ComentarioResource {
 			return Response.status(404).entity(new ErrorMessage("Não foi encontrado filme com id: " + idFilme)).build();
 		}
 		Comentario comentario = comentarioDao.getById(idFilme, idComentario);
-		System.out.println(comentario);
 		if(comentario == null) {
 			return Response.status(404).entity(new ErrorMessage("Não foi encontrado comentário com id: " + idComentario)).build();
 		}

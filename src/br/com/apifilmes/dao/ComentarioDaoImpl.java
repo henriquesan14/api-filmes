@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.apifilmes.models.Comentario;
@@ -44,8 +45,9 @@ public class ComentarioDaoImpl implements ComentarioDao, Serializable{
 	public void remove(Long id) {
 		em = JPAUtils.createEntityManager();
 		em.getTransaction().begin();
-		Comentario comentario = em.find(Comentario.class, id);
-		em.remove(comentario);
+		em.createQuery("DELETE FROM Comentario c WHERE c.id = ?1")	
+			.setParameter(1, id)
+				.executeUpdate();
 		em.getTransaction().commit();
 		em.close();
 	}

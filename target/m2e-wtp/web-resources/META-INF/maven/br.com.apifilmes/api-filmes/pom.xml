@@ -76,6 +76,6 @@
 			<artifactId>weld-servlet</artifactId>
 			<version>2.4.8.Final</version>
 		</dependency>
-
+			
 	</dependencies>
 </project>

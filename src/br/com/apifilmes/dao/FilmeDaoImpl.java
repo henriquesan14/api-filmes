@@ -11,8 +11,12 @@ import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.apifilmes.models.Filme;
+import br.com.apifilmes.models.Usuario;
 import br.com.apifilmes.utils.JPAUtils;
 
 public class FilmeDaoImpl implements FilmeDao, Serializable {
@@ -46,16 +50,23 @@ public class FilmeDaoImpl implements FilmeDao, Serializable {
 	public void remove(Long id) {
 		em = JPAUtils.createEntityManager();
 		em.getTransaction().begin();
-		Filme filme = em.find(Filme.class, id);
-		em.remove(filme);
+		em.createQuery("DELETE FROM Filme f WHERE f.id = ?1")	
+			.setParameter(1, id)
+				.executeUpdate();
 		em.getTransaction().commit();
 		em.close();
 	}
 	
 	public Filme getById(Long id) {
 		em  = JPAUtils.createEntityManager();
-		Filme filme = em.find(Filme.class, id);
-		return filme;
+		TypedQuery<Filme> query = em.createQuery("SELECT f FROM Filme f WHERE f.id = ?1", Filme.class);
+		query.setParameter(1, id);
+		try{
+			Filme filme = query.getSingleResult();
+			return filme;
+		}catch(NoResultException ex) {
+			return null;
+		}
 	}
 
 }

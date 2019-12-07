@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,10 +30,13 @@ public class Filme implements Serializable {
 	
 	private BigDecimal nota;
 	
+	
+	@Column(length = 200)
 	private String urlImagem;
 	
 	@OneToMany(mappedBy = "filme")
 	
+	@JsonbTransient
 	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 	public Filme() {

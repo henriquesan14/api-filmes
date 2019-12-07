@@ -2,64 +2,56 @@ package br.com.apifilmes.models;
 
 import java.io.Serializable;
 
-import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Comentario implements Serializable {
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String mensagem;
-	private int nota;
+	@Column(unique = true)
+	private String email;
+	private String senha;
+	private String perfil;
 	
-	@ManyToOne()
-	@JoinColumn(name="filme_id")
-	
-	private Filme filme;
-	
-	public Comentario(Long id, String mensagem, int nota, Filme filme) {
-		super();
-		this.id = id;
-		this.mensagem = mensagem;
-		this.nota = nota;
-		this.filme = filme;
-	}
-	
-	public Comentario() {
+	public Usuario() {
 		super();
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getMensagem() {
-		return mensagem;
+	public String getEmail() {
+		return email;
 	}
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public int getNota() {
-		return nota;
+	public String getSenha() {
+		return senha;
 	}
-	public void setNota(int nota) {
-		this.nota = nota;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	public Filme getFilme() {
-		return filme;
+	public String getPerfil() {
+		return perfil;
 	}
-	public void setFilme(Filme filme) {
-		this.filme = filme;
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	@Override
@@ -78,7 +70,7 @@ public class Comentario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Comentario other = (Comentario) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -86,5 +78,6 @@ public class Comentario implements Serializable {
 			return false;
 		return true;
 	}
+	
 	
 }

@@ -12,6 +12,7 @@
     <!-- entidade mapeada -->
     <class>br.com.apifilmes.models.Filme</class>
     <class>br.com.apifilmes.models.Comentario</class>
+    <class>br.com.apifilmes.models.Usuario</class>
  
     <properties>
      
@@ -19,11 +20,11 @@
       <property name="javax.persistence.jdbc.driver"
       value="com.mysql.jdbc.Driver" />
       <property name="javax.persistence.jdbc.url"
-      value="jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_fd4be873c0dc504" />
+      value="jdbc:mysql://ls-a7be481295b376939d930b53bdefa40aab822c9d.cymduc3jy3gm.us-east-1.rds.amazonaws.com/filmes" />
       <property name="javax.persistence.jdbc.user"
-      value="ba1c355f253a7e" />
+      value="dbmasteruser" />
       <property name="javax.persistence.jdbc.password"
-      value="51fbc965" />
+      value="unipeSGSL2019" />
  
       <!-- propriedades do hibernate -->
       <property name="hibernate.dialect"
