@@ -1,8 +1,3 @@
-
-
-
-
-
 package br.com.apifilmes.dao;
 
 import java.io.Serializable;
